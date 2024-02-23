@@ -104,6 +104,39 @@ def getLocalFrameMatrix(R_ij, t_ij):
     
     return T_ij
 	
+def forward_kinematics(Phi, L1, L2, L3, L4):
+    radius = .4
+    origin_loc = np.array([[3],
+                           [2],
+                           [0]])
+    R_01 = RotationMatrix(Phi[0], axis_name="z")
+    t_01 = origin_loc
+    T_01 = getLocalFrameMatrix(R_01, t_01)
+
+    R_12 = RotationMatrix(Phi[1], axis_name="z")
+    t_12 = np.array([[L1 + (2*radius)],
+                     [0.0],
+                     [0.0]])
+    T_12 = getLocalFrameMatrix(R_12, t_12)
+    T_02 = T_01 @ T_12
+
+    R_23 = RotationMatrix(Phi[2], axis_name="z")
+    t_23 = np.array([[L2 + (2*radius)],
+                     [0.0],
+                     [0.0]])
+    T_23 = getLocalFrameMatrix(R_23, t_23)
+    T_03 = T_02 @ T_23
+
+    R_34 = RotationMatrix(Phi[3], axis_name="z")
+    t_34 = np.array([[L3 + (radius)],
+                     [0.0],
+                     [0.0]])
+    T_34 = getLocalFrameMatrix(R_34, t_34)
+    T_04 = T_03 @ T_34
+
+    e = T_04[:, -1][:3]
+    
+    return T_01, T_02, T_03, T_04, e
 
 def main():
 
