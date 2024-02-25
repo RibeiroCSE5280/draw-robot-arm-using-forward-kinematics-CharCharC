@@ -4,7 +4,7 @@
 
 from vedo import *
 import numpy as np
-from PIL import ImageGrab
+# from PIL import ImageGrab
 
 def RotationMatrix(theta, axis_name):
     """ calculate single rotation of $theta$ matrix around x,y or z
@@ -180,7 +180,7 @@ def handle_timer(event):
       end_effector.apply_transform(T_04)
       plotter.render()
       # Takes a screenshot for the gif
-      images.append(ImageGrab.grab(bbox = (10,50,1000,800)))
+      # images.append(ImageGrab.grab(bbox = (10,50,1000,800)))
       num_frames += 1
 
 
@@ -298,10 +298,10 @@ timerevt = plotter.add_callback('timer', handle_timer, enable_picking=True)
 plotter.show([Frame1, Frame2, Frame3, end_effector], axes, viewup="z")
 
 # Saves the frames into a gif
-if num_frames > 40:
-  images[0].save('robot.gif', 
-                save_all = True, append_images = images[1:],  
-                optimize = False, duration = 10, loop=0)
+# if num_frames > 40:
+#   images[0].save('robot.gif', 
+#                 save_all = True, append_images = images[1:],  
+#                 optimize = False, duration = 10, loop=0)
 
 
 
