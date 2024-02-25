@@ -4,7 +4,7 @@
 
 from vedo import *
 import numpy as np
-# from PIL import ImageGrab
+from PIL import ImageGrab
 
 def RotationMatrix(theta, axis_name):
     """ calculate single rotation of $theta$ matrix around x,y or z
