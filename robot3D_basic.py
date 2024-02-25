@@ -113,7 +113,7 @@ def forward_kinematics(Phi, L1, L2, L3, L4):
                            [0]])
     
     # Calculate frame 1 w.r.t the origin
-    R_01 = RotationMatrix(Phi[0], axis_name="y")
+    R_01 = RotationMatrix(Phi[0], axis_name="z")
     t_01 = origin_loc
     T_01 = getLocalFrameMatrix(R_01, t_01)
 
@@ -126,7 +126,7 @@ def forward_kinematics(Phi, L1, L2, L3, L4):
     T_02 = T_01 @ T_12
 
     # Calculate frame 3 w.r.t frame 2
-    R_23 = RotationMatrix(Phi[2], axis_name="y")
+    R_23 = RotationMatrix(Phi[2], axis_name="z")
     t_23 = np.array([[L2 + (2*radius)],
                      [0.0],
                      [0.0]])
@@ -180,7 +180,7 @@ def handle_timer(event):
       end_effector.apply_transform(T_04)
       plotter.render()
       # Takes a screenshot for the gif
-      # images.append(ImageGrab.grab(bbox = (10,50,1000,800)))
+      images.append(ImageGrab.grab(bbox = (10,50,1000,800)))
       num_frames += 1
 
 
@@ -298,10 +298,10 @@ timerevt = plotter.add_callback('timer', handle_timer, enable_picking=True)
 plotter.show([Frame1, Frame2, Frame3, end_effector], axes, viewup="z")
 
 # Saves the frames into a gif
-# if num_frames > 40:
-#   images[0].save('robot.gif', 
-#                 save_all = True, append_images = images[1:],  
-#                 optimize = False, duration = 10, loop=0)
+if num_frames > 40:
+  images[0].save('robot.gif', 
+                save_all = True, append_images = images[1:],  
+                optimize = False, duration = 10, loop=0)
 
 
 
