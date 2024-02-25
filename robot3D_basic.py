@@ -293,8 +293,8 @@ num_frames = 0
 # Creates the animation
 plotter = Plotter(size=(700, 500))
 # plotter.initialize_interactor()
-timer_id = plotter.timer_callback("start", dt=100)
-timerevt = plotter.add_callback('timer', handle_timer, enable_picking=True)
+# timer_id = plotter.timer_callback("start", dt=100)
+# timerevt = plotter.add_callback('timer', handle_timer, enable_picking=True)
 plotter.show([Frame1, Frame2, Frame3, end_effector], axes, viewup="z")
 
 # Saves the frames into a gif
